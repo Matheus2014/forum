@@ -1,0 +1,65 @@
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Forum</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+	{% block bootstrp3_content %}
+	<div class="container">
+		<nav class="nav navbar-default">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="{% url 'blog.views.index' %}">Forum de Duvidas</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="{% url 'blog.views.index' %}">Home</a></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Duvidas <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							{% for i in cate %}
+								<li><a href="{% url 'blog.views.duvida' cat=i.nome %}">{{ i.nome }}</a></li>
+							{% endfor %}
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Tutoriais <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							{% for i in cate %}
+								<li><a href="{% url 'blog.views.menu' cat=i.nome %}">{{ i.nome }}</a></li>
+							{% endfor %}
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="jumbotron">
+			<h1>{% block title %}Home{% endblock %}</h1>
+			<p>{% block info %}logo estara em funcionamento{% endblock %}</p>
+		</div>
+		{% block post %}
+		{% for i in post %}
+			<div class="row">
+					<div class="col-sm-8">
+						<h3><a href="{% url 'blog.views.detalhe' id=i.id %}">{{ i.titulo }}</a></h3>
+						<p>{{ i.texto|slice:":150" }}</p>
+						<p>{{ i.criado }}</p>
+						{% empty %}
+						<p>Sem postagens no momento</p>
+					</div>
+			</div>
+		{% endfor %}	
+		{% endblock %}
+		{% block comentario %}
+		{% endblock %}
+ 		</div>
+	{% endblock %}
+</body>
+</html>

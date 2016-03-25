@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+{% block title %}{{ detalhe.titulo }}{% endblock %}
+{% block info %}{{ detalhe.criado }}{% endblock %}
+
+
+
+{% block post %}
+		<div class="row">
+					<div class="col-lg-12">
+						<h3><p>{{ detalhe.texto }}</p></h3>
+					</div>
+		</div>
+{% endblock %}
+{% block comentario %}
+	<div class="container">		
+		<div class="row ">
+			<div class="col-ls-12">
+				<h3>Comentarios <span class="badge">0</span></h3>
+			</div>		
+		</div>
+	</div>
+{% endblock %}	

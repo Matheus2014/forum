@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block title %}Tutoriais{% endblock %}
+{% block post %}
+	{% for i in post %}
+		<div class="row">
+					<div class="col-sm-8">
+						<h3><a href="{% url 'blog.views.detalhe' id=i.id %}">{{ i.titulo }}</a></h3>
+						<p>{{ i.texto|slice:":150" }}</p>
+						<p>{{ i.criado }}</p>
+						{% empty %}
+						<p>Sem postagens no momento</p>
+					</div>
+		</div>
+	{% endfor %}
+{% endblock %}

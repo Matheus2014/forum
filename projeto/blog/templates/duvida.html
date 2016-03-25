@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block title %}Duvidas{% endblock %}
+
+{% block post %}
+	{% for i in duvida %}
+		<div class="row">
+					<div class="col-sm-8">
+						<h3><a href="#">{{ i.titulo }}</a></h3>
+						<p>{{ i.texto|slice:":150" }}</p>
+						<p>{{ i.criado }}</p>
+						{% empty %}
+						<p>Sem postagens no momento</p>
+					</div>
+		</div>
+	{% endfor %}
+{% endblock %}
